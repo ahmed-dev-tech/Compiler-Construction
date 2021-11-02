@@ -1,0 +1,10 @@
+digit result = 10000;
+digit result = 150;
+point v2 = 1.0;
+word w = 'aaaa';
+
+char ch = 'a';
+if
+{
+result
+}
