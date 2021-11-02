@@ -109,7 +109,7 @@ tokens = []
 # source_code ='digit result = 100;\ndigit result = 150;\ndigit result = 200;\ndigit result = 300;\ndigit result = 400;\n'.splitlines()
 # for i,word in enumerate(source_code):
 
-with open("C:/Users/hh/Desktop/CC/program.txt", 'r') as f:
+with open("E:/Compiler-Construction/program.txt", 'r') as f:
     source_code = f.read().splitlines()
 
 def split(string, delimiters=' \t\n'):
@@ -153,15 +153,15 @@ for word in source_code:
         elif re.match(r'^_+[a-zA-Z_0-9]*[A-Za-z0-9]$|^[A-Za-z]+[A-Za-z_0-9]*[A-Za-z0-9]$|^[A-Za-z]+$',i):
             tokens.append(["IDENTIFIER", i , str(c)])
         
-        elif re.match(r"^'[a-zA-Z0-9]'$|^'[!@#$%^&*()-=+{}|;:<>,.?/']'$|^'\\[\'\"\\]'$|^'\\[ntrafb0]'$",i):
-            tokens.append(["CHARACTER", i , str(c)])
+        # elif re.match(r"^'[a-zA-Z0-9]'$|^'[!@#$%^&*()-=+{}|;:<>,.?/']'$|^'\\[\'\"\\]'$|^'\\[ntrafb0]'$",i):
+        #     tokens.append(["CHARACTER", i , str(c)])
 
         elif i[len(i) - 1] == ';':
             if re.match(r"\d+\.\d+",i):
                 tokens.append(["Float", i , str(c)])
             elif re.match(r'\d\d\d',i):
                 tokens.append(["INTEGER", i , str(c)])
-            elif re.match(r'[\w\W\s]?',i):
+            elif len(i)<=4 and re.match(r'[\w\W\s]',i):
                 tokens.append(["CHARACTER", i , str(c)])
             elif re.match(r'[\w\W\s]*',i):
                 tokens.append(["STRING", i , str(c)])
@@ -175,7 +175,9 @@ for i in tokens:
         t.append(j)
 a=listToString(t)
 b=a.replace(' ',',')
-print(b)
 f = open("token.txt", "w")
 f.write(b)
 f.close()                
+
+print(tokens)
+print(b)
