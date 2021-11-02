@@ -13,7 +13,7 @@ opr = {"+":"PM","-":"PM","*":"MDM","/":"MDM","%":"MDM","!":"NOT","~":"NOT","&&":
       
 punc = {",":"," , ";":";" , ":":":" , ".":"." , "{":"{" , "}":"}" , "(":"(" , ")":")" ,
         "[":"[" , "]":"]" }
-
+#12
 tokens = []
 # source_code ='digit result = 100;\ndigit result = 150;\ndigit result = 200;\ndigit result = 300;\ndigit result = 400;\n'.splitlines()
 # for i,word in enumerate(source_code):
