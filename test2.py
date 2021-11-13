@@ -112,7 +112,7 @@ tokens = []
 with open("E:/Compiler-Construction/program.txt", 'r') as f:
     source_code = f.read().splitlines()
 
-def split(string, delimiters=' \t\n'):
+def split(string, delimiters='\t\n'):
     result = []
     word = ''
     for c in string:
@@ -145,22 +145,24 @@ for word in source_code:
         # elif re.match("[a-z]", i or re.match("[A-Z]", i)):
         #     tokens.append(['IDENTIFIER', i ,c])
         # This will look for an operator
+        elif re.match(r"^#[\w+ +\W\s]*",i):
+            tokens.append(['Comment', " " ,str(c)])
         elif i in opr.keys():
             tokens.append(['OPERATOR', i , str(c)])
         elif i in punc.keys():
-            tokens.append(['PUNTUATER', i ,str(c)])
+            tokens.append(['PUNCTUATOR', i ,str(c)])
         # This will look for integer items and cast them as a number 
         elif re.match(r'^_+[a-zA-Z_0-9]*[A-Za-z0-9]$|^[A-Za-z]+[A-Za-z_0-9]*[A-Za-z0-9]$|^[A-Za-z]+$',i):
             tokens.append(["IDENTIFIER", i , str(c)])
-        
         # elif re.match(r"^'[a-zA-Z0-9]'$|^'[!@#$%^&*()-=+{}|;:<>,.?/']'$|^'\\[\'\"\\]'$|^'\\[ntrafb0]'$",i):
         #     tokens.append(["CHARACTER", i , str(c)])
 
         elif i[len(i) - 1] == ';':
-            if re.match(r"\d+\.\d+",i):
-                tokens.append(["Float", i , str(c)])
+            if re.match(r"([+|-][0-9]*[.][0-9]+)|([0-9]*[.][0-9]+)",i):#[\d+\.\d]
+                tokens.append(["Float", i , str(c)])        
             elif re.match(r'\d\d\d',i):
                 tokens.append(["INTEGER", i , str(c)])
+            
             elif len(i)<=4 and re.match(r'[\w\W\s]',i):
                 tokens.append(["CHARACTER", i , str(c)])
             elif re.match(r'[\w\W\s]*',i):
